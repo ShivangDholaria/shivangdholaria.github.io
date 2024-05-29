@@ -16,7 +16,7 @@ const Navbar = () => {
             window.scrollTo(0,0); //Scrolls to top of window
           }
         }>
-        <img src={logo} alt="logo" className='w-9 h-9 object-contain'/>
+        <img src={logo} alt="logo" className='w-9 h-9 object-contain'/> 
         <p className='text-white text-[18px] font-bold cursor-pointer'>Shivang <span className='sm:block hidden'>| Game Developer | PenTester</span></p>
         </Link>
       </div>
