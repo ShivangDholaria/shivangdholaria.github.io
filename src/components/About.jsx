@@ -47,7 +47,11 @@ const About = () => {
         variants={fadeIn("", "", 0.1, 1)}
         className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
       >
-        To be added!
+        I make games in Unity3D and Unreal Engine, develop software components and play CTFs.
+        I have experience working with Java, C++, python, and C# along with frameworks such as Spring Boot.
+        I'm a quick and curious learner and collaborate closely with team members to
+        create efficient, scalable, and user-friendly solutions.
+        Let's work together to turn ideas into reality!
       </motion.p>
 
       <div className='mt-20 flex flex-wrap gap-10'>

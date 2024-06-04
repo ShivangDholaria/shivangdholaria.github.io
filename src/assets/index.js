@@ -45,6 +45,7 @@ import carrent from "./carrent.png";
 import jobit from "./jobit.png";
 import tripguide from "./tripguide.png";
 import api_proj from "./proj/api_proj.png"
+import graph from "./proj/graph.gif"
 
 export {
   logo,
@@ -90,5 +91,6 @@ export {
   azure,
   wireshark,
   sql,
-  api_proj
+  api_proj,
+  graph
 };

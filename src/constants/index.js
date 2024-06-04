@@ -17,6 +17,7 @@ import {
   javascript,
   jobit,
   meta,
+  graph,
   mobile,
   mongodb,
   nodejs,
@@ -137,9 +138,9 @@ const experiences = [
     iconBg: "#383E56",
     date: "December 2021 - March 2022",
     points: [
-      "Devloped and maintained 2D game using Unity 3D and other related technologies",
+      "Developed and maintained 2D electric vehicle simulation game using Unity3D to promote clean transportation and utilized 2D terrain design system to construct the game world and levels.",
       "Programmed a refueling system with queuing functionality to mimic real-world charging scenarios",
-      "Implemented spawning system for collectibles that spawn at a given time interval",
+      "Implemented a spawning system that dynamically generates collectible objects in the game world after set time interval.",
     ],
   }
 
@@ -192,7 +193,7 @@ const projects = [
       },
       {
         name: "restapi",
-        color: "white-text-gradient",
+        color: "orange-text-gradient",
       },
     ],
     image: api_proj,
@@ -208,16 +209,12 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: "restapi",
+        name: " C#",
         color: "green-text-gradient",
       },
-      {
-        name: "scss",
-        color: "pink-text-gradient",
-      },
     ],
-    image: jobit,
-    source_code_link: "https://github.com/",
+    image: graph,
+    source_code_link: "https://github.com/ShivangDholaria/Graph_V2",
   },
   // {
   //   name: "Trip Guide",
