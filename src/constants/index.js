@@ -1,28 +1,43 @@
 import {
-  mobile,
+  api_proj,
+  aws,
+  azure,
   backend,
+  carrent,
+  cpp,
   creator,
-  web,
-  javascript,
-  typescript,
-  html,
+  csharp,
   css,
+  docker,
+  figma,
+  gamedev,
+  git,
+  html,
+  java,
+  javascript,
+  jobit,
+  meta,
+  mobile,
+  mongodb,
+  nodejs,
+  pentesting,
+  plexflo,
+  postgres,
+  python,
   reactjs,
   redux,
-  tailwind,
-  nodejs,
-  mongodb,
-  git,
-  figma,
-  docker,
-  meta,
-  starbucks,
-  tesla,
   shopify,
-  carrent,
-  jobit,
-  tripguide,
+  spring,
+  sql,
+  tailwind,
+  tesla,
   threejs,
+  tripguide,
+  typescript,
+  unity,
+  unreal,
+  web,
+  wireshark
 } from "../assets";
 
 export const navLinks = [
@@ -42,189 +57,154 @@ export const navLinks = [
 
 const services = [
   {
-    title: "Web Developer",
-    icon: web,
-  },
-  {
-    title: "React Native Developer",
-    icon: mobile,
+    title: "Game Developer",
+    icon: gamedev,
   },
   {
     title: "Backend Developer",
     icon: backend,
   },
   {
-    title: "Content Creator",
-    icon: creator,
+    title: "Penetration Tester",
+    icon: pentesting,
   },
 ];
 
 const technologies = [
   {
-    name: "HTML 5",
-    icon: html,
+    name: "c_plus_plus",
+    icon: cpp,
   },
   {
-    name: "CSS 3",
-    icon: css,
+    name: "c#",
+    icon: csharp,
   },
   {
-    name: "JavaScript",
-    icon: javascript,
+    name: "java",
+    icon: java,
   },
   {
-    name: "TypeScript",
-    icon: typescript,
+    name: "python",
+    icon: python,
   },
   {
-    name: "React JS",
-    icon: reactjs,
+    name: "SQL",
+    icon: sql,
   },
   {
-    name: "Redux Toolkit",
-    icon: redux,
+    name: "spring",
+    icon: spring,
   },
   {
-    name: "Tailwind CSS",
-    icon: tailwind,
-  },
-  {
-    name: "Node JS",
-    icon: nodejs,
-  },
-  {
-    name: "MongoDB",
-    icon: mongodb,
-  },
-  {
-    name: "Three JS",
-    icon: threejs,
+    name: "Postgres",
+    icon: postgres,
   },
   {
     name: "git",
     icon: git,
   },
   {
-    name: "figma",
-    icon: figma,
-  },
-  {
     name: "docker",
     icon: docker,
+  },
+  {
+    name: "unity",
+    icon: unity,
+  },
+  {
+    name: "unreal",
+    icon: unreal,
+  },
+  {
+    name: "AWS",
+    icon: aws,
+  },
+  {
+    name: "Azure",
+    icon: azure,
+  },
+  {
+    name: "wireshark",
+    icon: wireshark,
   },
 ];
 
 const experiences = [
   {
-    title: "React.js Developer",
-    company_name: "Starbucks",
-    icon: starbucks,
+    title: "Game Physics Intern",
+    company_name: "PlexFlo LLC",
+    icon: plexflo,
     iconBg: "#383E56",
-    date: "March 2020 - April 2021",
+    date: "December 2021 - March 2022",
     points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
+      "Devloped and maintained 2D game using Unity 3D and other related technologies",
+      "Programmed a refueling system with queuing functionality to mimic real-world charging scenarios",
+      "Implemented spawning system for collectibles that spawn at a given time interval",
     ],
-  },
-  {
-    title: "React Native Developer",
-    company_name: "Tesla",
-    icon: tesla,
-    iconBg: "#E6DEDD",
-    date: "Jan 2021 - Feb 2022",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Web Developer",
-    company_name: "Shopify",
-    icon: shopify,
-    iconBg: "#383E56",
-    date: "Jan 2022 - Jan 2023",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
-  {
-    title: "Full stack Developer",
-    company_name: "Meta",
-    icon: meta,
-    iconBg: "#E6DEDD",
-    date: "Jan 2023 - Present",
-    points: [
-      "Developing and maintaining web applications using React.js and other related technologies.",
-      "Collaborating with cross-functional teams including designers, product managers, and other developers to create high-quality products.",
-      "Implementing responsive design and ensuring cross-browser compatibility.",
-      "Participating in code reviews and providing constructive feedback to other developers.",
-    ],
-  },
+  }
+
 ];
 
 const testimonials = [
-  {
-    testimonial:
-      "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-    name: "Sara Lee",
-    designation: "CFO",
-    company: "Acme Co",
-    image: "https://randomuser.me/api/portraits/women/4.jpg",
-  },
-  {
-    testimonial:
-      "I've never met a web developer who truly cares about their clients' success like Rick does.",
-    name: "Chris Brown",
-    designation: "COO",
-    company: "DEF Corp",
-    image: "https://randomuser.me/api/portraits/men/5.jpg",
-  },
-  {
-    testimonial:
-      "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-    name: "Lisa Wang",
-    designation: "CTO",
-    company: "456 Enterprises",
-    image: "https://randomuser.me/api/portraits/women/6.jpg",
-  },
+  // {
+  //   testimonial:
+  //     "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
+  //   name: "Sara Lee",
+  //   designation: "CFO",
+  //   company: "Acme Co",
+  //   image: "https://randomuser.me/api/portraits/women/4.jpg",
+  // },
+  // {
+  //   testimonial:
+  //     "I've never met a web developer who truly cares about their clients' success like Rick does.",
+  //   name: "Chris Brown",
+  //   designation: "COO",
+  //   company: "DEF Corp",
+  //   image: "https://randomuser.me/api/portraits/men/5.jpg",
+  // },
+  // {
+  //   testimonial:
+  //     "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
+  //   name: "Lisa Wang",
+  //   designation: "CTO",
+  //   company: "456 Enterprises",
+  //   image: "https://randomuser.me/api/portraits/women/6.jpg",
+  // },
 ];
 
 const projects = [
   {
-    name: "Car Rent",
+    name: "Bank Transaction API",
     description:
-      "Web-based platform that allows users to search, book, and manage car rentals from various providers, providing a convenient and efficient solution for transportation needs.",
+      "Backend API that allows users to credit and debit amount from their account along with an event logger to log all the failed and successful transactions.",
     tags: [
       {
-        name: "react",
+        name: "Java",
         color: "blue-text-gradient",
       },
       {
-        name: "mongodb",
+        name: "Spring-Boot",
         color: "green-text-gradient",
       },
       {
-        name: "tailwind",
+        name: "Postgres",
         color: "pink-text-gradient",
       },
+      {
+        name: "restapi",
+        color: "cyan-text-gradient",
+      },
     ],
-    image: carrent,
-    source_code_link: "https://github.com/",
+    image: api_proj,
+    source_code_link: "https://github.com/ShivangDholaria/Microtransaction-Project",
   },
   {
-    name: "Job IT",
+    name: "Graph Visualizer",
     description:
-      "Web application that enables users to search for job openings, view estimated salary ranges for positions, and locate available jobs based on their current location.",
+      "A Unity project that visualizes different mathematical functions and graphs them in 3D space.User has a choice to select from different functions",
     tags: [
       {
-        name: "react",
+        name: "Unity3D",
         color: "blue-text-gradient",
       },
       {
@@ -239,27 +219,28 @@ const projects = [
     image: jobit,
     source_code_link: "https://github.com/",
   },
-  {
-    name: "Trip Guide",
-    description:
-      "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-    tags: [
-      {
-        name: "nextjs",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "supabase",
-        color: "green-text-gradient",
-      },
-      {
-        name: "css",
-        color: "pink-text-gradient",
-      },
-    ],
-    image: tripguide,
-    source_code_link: "https://github.com/",
-  },
+  // {
+  //   name: "Trip Guide",
+  //   description:
+  //     "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
+  //   tags: [
+  //     {
+  //       name: "nextjs",
+  //       color: "blue-text-gradient",
+  //     },
+  //     {
+  //       name: "supabase",
+  //       color: "green-text-gradient",
+  //     },
+  //     {
+  //       name: "css",
+  //       color: "pink-text-gradient",
+  //     },
+  //   ],
+  //   image: tripguide,
+  //   source_code_link: "https://github.com/",
+  // },
 ];
 
-export { services, technologies, experiences, testimonials, projects };
+export { experiences, projects, services, technologies, testimonials };
+
