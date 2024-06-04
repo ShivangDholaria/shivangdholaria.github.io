@@ -123,10 +123,10 @@ const technologies = [
     name: "Azure",
     icon: azure,
   },
-  {
-    name: "wireshark",
-    icon: wireshark,
-  },
+  // {
+  //   name: "wireshark",
+  //   icon: wireshark,
+  // },
 ];
 
 const experiences = [
@@ -192,7 +192,7 @@ const projects = [
       },
       {
         name: "restapi",
-        color: "cyan-text-gradient",
+        color: "white-text-gradient",
       },
     ],
     image: api_proj,
