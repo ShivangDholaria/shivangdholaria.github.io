@@ -38,7 +38,8 @@ import {
   unity,
   unreal,
   web,
-  wireshark
+  wireshark,
+  writeup
 } from "../assets";
 
 export const navLinks = [
@@ -192,7 +193,7 @@ const projects = [
         color: "pink-text-gradient",
       },
       {
-        name: "restapi",
+        name: "RESTApi",
         color: "orange-text-gradient",
       },
     ],
@@ -209,34 +210,34 @@ const projects = [
         color: "blue-text-gradient",
       },
       {
-        name: " C#",
+        name: "C#",
         color: "green-text-gradient",
       },
     ],
     image: graph,
     source_code_link: "https://github.com/ShivangDholaria/Graph_V2",
   },
-  // {
-  //   name: "Trip Guide",
-  //   description:
-  //     "A comprehensive travel booking platform that allows users to book flights, hotels, and rental cars, and offers curated recommendations for popular destinations.",
-  //   tags: [
-  //     {
-  //       name: "nextjs",
-  //       color: "blue-text-gradient",
-  //     },
-  //     {
-  //       name: "supabase",
-  //       color: "green-text-gradient",
-  //     },
-  //     {
-  //       name: "css",
-  //       color: "pink-text-gradient",
-  //     },
-  //   ],
-  //   image: tripguide,
-  //   source_code_link: "https://github.com/",
-  // },
+  {
+    name: "Technical Write Ups",
+    description:
+      "Techinal report for all the machines and CTF challenges solved be me",
+    tags: [
+      {
+        name: "Problem Solving",
+        color: "blue-text-gradient",
+      },
+      {
+        name: "PenTesting",
+        color: "green-text-gradient",
+      },
+      {
+        name: "Reverse Engineering",
+        color: "pink-text-gradient",
+      },
+    ],
+    image: writeup,
+    source_code_link: "https://github.com/ShivangDholaria/Writeups",
+  },
 ];
 
 export { experiences, projects, services, technologies, testimonials };

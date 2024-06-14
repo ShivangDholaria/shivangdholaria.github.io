@@ -8,6 +8,7 @@ import menu from "./menu.svg";
 import close from "./close.svg";
 import pentesting from "./pentesting.png"
 import gamedev from "./game-dev.png"
+import writeup from "./proj/Writeup-repo.png"
 
 import css from "./tech/css.png";
 import docker from "./tech/docker.png";
@@ -92,5 +93,6 @@ export {
   wireshark,
   sql,
   api_proj,
-  graph
+  graph,
+  writeup
 };
