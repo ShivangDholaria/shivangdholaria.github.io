@@ -1,48 +1,68 @@
-# Portfolio revamp — 2b (dark base, light bands) React/Vite port
+# Shivang Dholaria — Portfolio
 
-Drop-in replacement for your existing frontend. Your **data layer stays untouched** —
-every component still reads from `src/constants/index.js` and `src/assets`. Only
-presentation, Tailwind tokens, and the font changed.
+Personal portfolio for a backend-leaning full-stack engineer — a single-page site
+covering my work across software engineering, game development, and cybersecurity.
 
-## What's here
+**Live:** https://shivangdholaria.github.io
+
+## Built with
+
+- **React 18** + **Vite**
+- **Tailwind CSS** — dark base with two light "bands" (Now, Contact/Footer), Geist + Geist Mono
+- **Framer Motion** — scroll reveals, active-section nav, respects `prefers-reduced-motion`
+- **EmailJS** — contact form (no backend)
+- **GitHub Actions → GitHub Pages** — auto-deploy on push to `main`
+
+## Sections
+
+Hero (+ metrics) · Now · About · Stack · Experience · Education · Selected Work · Contact
+
+## Getting started
+
+Requires Node 18+.
+
+```bash
+git clone https://github.com/ShivangDholaria/shivangdholaria.github.io.git
+cd shivangdholaria.github.io
+npm install
+```
+
+The contact form needs EmailJS credentials — copy the example env file and fill in
+your keys from the [EmailJS dashboard](https://dashboard.emailjs.com):
+
+```bash
+cp .env.example .env
+```
+
+```bash
+npm run dev      # start the dev server
+npm run build    # production build → dist/
+npm run preview  # preview the production build locally
+npm run lint     # run eslint
+```
+
+## Editing content
+
+- **Most content** — profile, socials, about, skills, experience, education, projects —
+  lives in [`src/constants/index.js`](src/constants/index.js).
+- **Hero metrics** — the `metrics` array at the top of [`src/components/Hero.jsx`](src/components/Hero.jsx).
+- **"Now" band copy** — [`src/components/Now.jsx`](src/components/Now.jsx).
+- **Résumé** — drop `resume.pdf` into [`public/`](public/) (the Résumé button links to `/resume.pdf`).
+
+## Project structure
 
 ```
-index.html                     → Geist font swap (was Inter)
-tailwind.config.js             → new color tokens + Geist font family
-src/index.css                  → body now bg-ink / text-fg on the new tokens
-src/App.jsx                    → adds <Now /> band; drops the old fixed radial bg
-src/components/
-  Navbar.jsx                   → mono 01_about … nav, purple square mark
-  Hero.jsx                     → split-free hero + 3-up metrics strip ($1M+ / Legacy→modern / 3 domains)
-  Now.jsx      (NEW)           → light "impact" band — current work at Surya
-  About.jsx                    → numbered two-column (01 / ABOUT) + service cards
-  Tech.jsx                     → numbered two-column (02 / STACK) + logo chips
-  Experience.jsx               → 03 / EXPERIENCE, date-left hairline rows
-  Education.jsx                → 04 / EDUCATION, two-column
-  Works.jsx                    → 05 / SELECTED WORK, 3-card grid
-  Contact.jsx                  → light band, 06 / CONTACT — KEEPS your EmailJS form
-  Footer.jsx                   → light bottom bar
-  Reveal.jsx / Icons.jsx       → unchanged (copied for completeness)
+src/
+  main.jsx             # entry point
+  App.jsx              # section composition
+  index.css            # base styles + Tailwind layers
+  constants/index.js   # all site content/data
+  assets/              # images + icon barrel (only used assets are bundled)
+  components/          # Navbar, Hero, Now, About, Tech, Experience,
+                       # Education, Works, Contact, Footer, Reveal, Icons
 ```
 
-`Section.jsx` is no longer used (each section owns its header now) — you can delete it.
+## Deployment
 
-## Install
-
-1. Copy these files over the matching paths in your repo (back up first / commit).
-2. No new dependencies. You already have `framer-motion` and `@emailjs/browser`.
-3. `npm run dev` and check it out.
-
-## Notes
-
-- **Fonts:** switched Inter → **Geist + Geist Mono** (loaded in `index.html`).
-- **Theme:** dark base (`ink #0c0c0e`) with two **light bands** — the "Now" impact
-  section and the Contact/Footer — for the section-contrast rhythm you liked in 2b.
-  Purple accent kept (`#7c5cff`; `#6a46e8` on light).
-- **Metrics** live at the top of `Hero.jsx` (`const metrics`). Edit the copy there,
-  or move the array into `src/constants/index.js` if you prefer.
-- **"Now" band copy** is in `Now.jsx`.
-- **EmailJS** contact form is preserved and restyled for the light band — your
-  `VITE_APP_EMAILJS_*` env vars work exactly as before.
-- The old 3D/planet hero is already gone in your current code; this keeps the
-  ambient purple glow only.
+Every push to `main` triggers [`.github/workflows/deploy_site.yml`](.github/workflows/deploy_site.yml),
+which runs `npm run build` and publishes `dist/` to GitHub Pages. No manual step.
