@@ -1,66 +1,40 @@
-import React from "react";
-import { Tilt } from "react-tilt";
-import { motion } from "framer-motion";
+import Reveal from "./Reveal";
+import { about, services } from "../constants";
 
-import { styles } from "../styles";
-import { services } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { fadeIn, textVariant } from "../utils/motion";
+const About = () => (
+  <section id="about" className="w-full border-b border-white/10">
+    <div className="mx-auto grid max-w-6xl gap-12 px-6 py-20 md:grid-cols-[280px_1fr]">
+      <Reveal>
+        <div className="font-mono text-[13px] tracking-[0.12em] text-accent-2">
+          01 / ABOUT
+        </div>
+        <h2 className="mt-4 text-3xl font-semibold leading-tight tracking-tight sm:text-[34px]">
+          Owning features end&#8209;to&#8209;end.
+        </h2>
+      </Reveal>
 
-const ServiceCard = ({ index, title, icon }) => (
-  <Tilt className='xs:w-[250px] w-full'>
-    <motion.div
-      variants={fadeIn("right", "spring", index * 0.5, 0.75)}
-      className='w-full green-pink-gradient p-[1px] rounded-[20px] shadow-card'
-    >
-      <div
-        options={{
-          max: 45,
-          scale: 1,
-          speed: 450,
-        }}
-        className='bg-tertiary rounded-[20px] py-5 px-12 min-h-[280px] flex justify-evenly items-center flex-col'
-      >
-        <img
-          src={icon}
-          alt='${title}-icon'
-          className='w-16 h-16 object-contain'
-        />
+      <div>
+        <Reveal>
+          <p className="text-[17px] leading-relaxed text-faint">
+            {about.paragraph}
+          </p>
+        </Reveal>
 
-        <h3 className='text-white text-[20px] font-bold text-center'>
-          {title}
-        </h3>
+        <div className="mt-9 grid gap-5 sm:grid-cols-3">
+          {services.map((s, i) => (
+            <Reveal key={s.title} delay={i * 0.08}>
+              <div className="h-full rounded-xl border border-white/10 bg-surface p-6 transition-colors duration-300 hover:border-white/25">
+                <div className="font-semibold">{s.title}</div>
+                <p className="mt-2 text-[13.5px] leading-relaxed text-muted">
+                  {s.description}
+                </p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
       </div>
-    </motion.div>
-  </Tilt>
+    </div>
+  </section>
 );
 
-const About = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={styles.sectionSubText}>Introduction</p>
-        <h2 className={styles.sectionHeadText}>Overview.</h2>
-      </motion.div>
-
-      <motion.p
-        variants={fadeIn("", "", 0.1, 1)}
-        className='mt-4 text-secondary text-[17px] max-w-3xl leading-[30px]'
-      >
-        I make games in Unity3D and Unreal Engine, develop software components and play CTFs.
-        I have experience working with Java, C++, python, and C# along with frameworks such as Spring Boot.
-        I'm a quick and curious learner and collaborate closely with team members to
-        create efficient, scalable, and user-friendly solutions.
-        Let's work together to turn ideas into reality!
-      </motion.p>
-
-      <div className='mt-20 flex flex-wrap gap-10'>
-        {services.map((service, index) => (
-          <ServiceCard key={service.title} index={index} {...service} />
-        ))}
-      </div>
-    </>
-  );
-};
-
-export default SectionWrapper(About, "about");
+export default About;

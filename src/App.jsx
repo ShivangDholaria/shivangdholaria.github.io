@@ -1,27 +1,29 @@
-import { BrowserRouter } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Hero from "./components/Hero";
+import Now from "./components/Now";
+import About from "./components/About";
+import Tech from "./components/Tech";
+import Experience from "./components/Experience";
+import Education from "./components/Education";
+import Works from "./components/Works";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-import { About, Contact, Experience, Feedbacks, Hero, Navbar, Tech, Works, StarsCanvas } from "./components";
-
-const App = () => {
-  return (
-    <BrowserRouter>
-      <div className='relative z-0 bg-primary'>
-        <div className='bg-hero-pattern bg-cover bg-no-repeat bg-center'>
-          <Navbar />
-          <Hero />
-        </div>
-        <About />
-        <Experience />
-        <Tech />
-        <Works />
-        {/* <Feedbacks /> */}
-        <div className='relative z-0'>
-          <Contact />
-          <StarsCanvas />
-        </div>
-      </div>
-    </BrowserRouter>
-  );
-}
+const App = () => (
+  <div className="relative min-h-screen bg-ink text-fg">
+    <Navbar />
+    <main>
+      <Hero />
+      <Now />
+      <About />
+      <Tech />
+      <Experience />
+      <Education />
+      <Works />
+      <Contact />
+    </main>
+    <Footer />
+  </div>
+);
 
 export default App;

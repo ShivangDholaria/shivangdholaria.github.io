@@ -1,85 +1,70 @@
-import React from "react";
-import {
-  VerticalTimeline,
-  VerticalTimelineElement,
-} from "react-vertical-timeline-component";
-import { motion } from "framer-motion";
-
-import "react-vertical-timeline-component/style.min.css";
-
-import { styles } from "../styles";
+import Reveal from "./Reveal";
 import { experiences } from "../constants";
-import { SectionWrapper } from "../hoc";
-import { textVariant } from "../utils/motion";
 
-const ExperienceCard = ({ experience }) => {
-  return (
-    <VerticalTimelineElement
-      contentStyle={{
-        background: "#1d1836",
-        color: "#fff",
-      }}
-      contentArrowStyle={{ borderRight: "7px solid  #232631" }}
-      date={experience.date}
-      iconStyle={{ background: experience.iconBg }}
-      icon={
-        <div className='flex justify-center items-center w-full h-full'>
-          <img
-            src={experience.icon}
-            alt={experience.company_name}
-            className='w-[60%] h-[60%] object-contain'
-          />
+const Experience = () => (
+  <section id="experience" className="w-full border-b border-white/10">
+    <div className="mx-auto max-w-6xl px-6 py-20">
+      <Reveal>
+        <div className="font-mono text-[13px] tracking-[0.12em] text-accent-2">
+          03 / EXPERIENCE
         </div>
-      }
-    >
-      <div>
-        <h3 className='text-white text-[24px] font-bold'>{experience.title}</h3>
-        <p
-          className='text-secondary text-[16px] font-semibold'
-          style={{ margin: 0 }}
-        >
-          {experience.company_name}
-        </p>
-      </div>
-
-      <ul className='mt-5 list-disc ml-5 space-y-2'>
-        {experience.points.map((point, index) => (
-          <li
-            key={`experience-point-${index}`}
-            className='text-white-100 text-[14px] pl-1 tracking-wider'
-          >
-            {point}
-          </li>
-        ))}
-      </ul>
-    </VerticalTimelineElement>
-  );
-};
-
-const Experience = () => {
-  return (
-    <>
-      <motion.div variants={textVariant()}>
-        <p className={`${styles.sectionSubText} text-center`}>
-          What I have done so far
-        </p>
-        <h2 className={`${styles.sectionHeadText} text-center`}>
-          Work Experience.
+        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-[34px]">
+          Where I&apos;ve shipped.
         </h2>
-      </motion.div>
+      </Reveal>
 
-      <div className='mt-20 flex flex-col'>
-        <VerticalTimeline>
-          {experiences.map((experience, index) => (
-            <ExperienceCard
-              key={`experience-${index}`}
-              experience={experience}
-            />
-          ))}
-        </VerticalTimeline>
+      <div className="mt-11">
+        {experiences.map((e, i) => (
+          <Reveal key={`${e.company_name}-${i}`} delay={i * 0.05}>
+            <div
+              className={`grid gap-6 md:grid-cols-[220px_1fr] ${
+                i === 0 ? "" : "pt-9"
+              } ${
+                i === experiences.length - 1
+                  ? ""
+                  : "border-b border-white/10 pb-9"
+              }`}
+            >
+              <p className="order-2 font-mono text-[13px] leading-relaxed text-muted md:order-1">
+                {e.date}
+              </p>
+              <div className="order-1 md:order-2">
+                <div className="text-xl font-semibold tracking-tight">
+                  {e.title}
+                </div>
+                <div className="mt-0.5 text-[15px] text-accent-2">
+                  {e.company_name}
+                </div>
+                <ul className="mt-4 space-y-2">
+                  {e.points.map((p, j) => (
+                    <li
+                      key={j}
+                      className="flex gap-3 text-[15px] leading-relaxed text-faint"
+                    >
+                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-2" />
+                      {p}
+                    </li>
+                  ))}
+                </ul>
+                {e.stack && (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {e.stack.map((s) => (
+                      <span
+                        key={s}
+                        className="rounded-md border border-white/14 px-2.5 py-1 font-mono text-xs text-muted"
+                      >
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          </Reveal>
+        ))}
       </div>
-    </>
-  );
-};
+    </div>
+  </section>
+);
 
-export default SectionWrapper(Experience, "work");
+export default Experience;

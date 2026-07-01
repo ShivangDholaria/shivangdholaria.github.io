@@ -1,244 +1,169 @@
 import {
   api_proj,
   aws,
-  azure,
-  backend,
-  carrent,
-  cpp,
-  creator,
   csharp,
-  css,
   docker,
-  figma,
-  gamedev,
   git,
-  html,
+  graph,
   java,
   javascript,
-  jobit,
-  meta,
-  graph,
-  mobile,
   mongodb,
-  nodejs,
-  pentesting,
-  plexflo,
-  postgres,
   python,
   reactjs,
-  redux,
-  shopify,
   spring,
-  sql,
-  tailwind,
-  tesla,
-  threejs,
-  tripguide,
   typescript,
   unity,
-  unreal,
-  web,
-  wireshark,
-  writeup
+  writeup,
 } from "../assets";
 
+export const profile = {
+  name: "Shivang Dholaria",
+  roles: ["Backend Engineer", "Full-Stack Developer"],
+  tagline:
+    "I build and modernize backend-heavy full-stack systems in insurance, healthcare, and fintech — where reliability and clean systems matter.",
+  location: "New York City Metropolitan Area",
+  email: "dholariashivang@gmail.com",
+  available: true,
+  resumeUrl: "/resume.pdf", // drop resume.pdf into /public
+};
+
 export const navLinks = [
+  { id: "about", title: "About" },
+  { id: "experience", title: "Experience" },
+  { id: "work", title: "Work" },
+  { id: "contact", title: "Contact" },
+];
+
+export const socials = [
+  { name: "GitHub", url: "https://github.com/ShivangDholaria", icon: "github" },
   {
-    id: "about",
-    title: "About",
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/shivangdholaria",
+    icon: "linkedin",
+  },
+  { name: "Email", url: "mailto:dholariashivang@gmail.com", icon: "mail" },
+];
+
+export const about = {
+  paragraph:
+    "I build backend-heavy full-stack systems in industries where bugs become regulatory problems. At Surya Insurance I single-handedly migrated a legacy full-stack app to a modern stack and built a reporting system that saved the company $1M+ through automation — and I'm now shipping an AI pipeline that parses policy applications, validates them against underwriting guidelines, and writes clean data into the policy management system. Earlier, I rebuilt patient-management systems and set up CI/CD from scratch at a home-healthcare company. I like owning features end-to-end — from “this is a problem” to “this is in production” — and modernizing legacy systems without breaking what already works. MS in Computer Science, Stevens Institute of Technology.",
+};
+
+export const services = [
+  {
+    title: "Backend & APIs",
+    description:
+      "Java, Spring Boot, Python, and REST APIs backed by MongoDB — reliable services for regulated domains.",
   },
   {
-    id: "work",
-    title: "Work",
+    title: "Full-Stack Delivery",
+    description:
+      "React and TypeScript front-ends when the work calls for it, owned end-to-end from problem to production.",
   },
   {
-    id: "contact",
-    title: "Contact",
+    title: "Cloud & CI/CD",
+    description:
+      "AWS, CI/CD pipelines, and deployment automation — modernizing legacy systems without breaking what works.",
   },
 ];
 
-const services = [
-  {
-    title: "Game Developer",
-    icon: gamedev,
-  },
-  {
-    title: "Backend Developer",
-    icon: backend,
-  },
-  {
-    title: "Penetration Tester",
-    icon: pentesting,
-  },
+export const technologies = [
+  { name: "Java", icon: java },
+  { name: "Spring Boot", icon: spring },
+  { name: "Python", icon: python },
+  { name: "JavaScript", icon: javascript },
+  { name: "TypeScript", icon: typescript },
+  { name: "React", icon: reactjs },
+  { name: "MongoDB", icon: mongodb },
+  { name: "AWS", icon: aws },
+  { name: "Docker", icon: docker },
+  { name: "Git", icon: git },
+  { name: "C#", icon: csharp },
+  { name: "Unity", icon: unity },
 ];
 
-const technologies = [
+export const experiences = [
   {
-    name: "c_plus_plus",
-    icon: cpp,
-  },
-  {
-    name: "c#",
-    icon: csharp,
-  },
-  {
-    name: "java",
-    icon: java,
-  },
-  {
-    name: "python",
-    icon: python,
-  },
-  {
-    name: "SQL",
-    icon: sql,
-  },
-  {
-    name: "spring",
-    icon: spring,
-  },
-  {
-    name: "Postgres",
-    icon: postgres,
-  },
-  {
-    name: "git",
-    icon: git,
-  },
-  {
-    name: "docker",
-    icon: docker,
-  },
-  {
-    name: "unity",
-    icon: unity,
-  },
-  {
-    name: "unreal",
-    icon: unreal,
-  },
-  {
-    name: "AWS",
-    icon: aws,
-  },
-  {
-    name: "Azure",
-    icon: azure,
-  },
-  // {
-  //   name: "wireshark",
-  //   icon: wireshark,
-  // },
-];
-
-const experiences = [
-  {
-    title: "Game Physics Intern",
-    company_name: "PlexFlo LLC",
-    icon: plexflo,
-    iconBg: "#383E56",
-    date: "December 2021 - March 2022",
+    title: "Software Engineer",
+    company_name: "Surya Insurance Company, RRG",
+    date: "August 2025 — Present",
     points: [
-      "Developed and maintained 2D electric vehicle simulation game using Unity3D to promote clean transportation and utilized 2D terrain design system to construct the game world and levels.",
-      "Programmed a refueling system with queuing functionality to mimic real-world charging scenarios",
-      "Implemented a spawning system that dynamically generates collectible objects in the game world after set time interval.",
+      "Migrated the company's legacy full-stack application to a modern stack single-handedly — modernizing the front-end and underlying services without disrupting active policy operations.",
+      "Built the internal reporting system from the ground up, automating manual reports and routing the right data to C-suite stakeholders — saving the company $1M+.",
+      "Implementing an AI-powered intake pipeline that parses policy applications, validates them against underwriting guidelines, and writes clean records into the policy management system.",
+      "Automated transactional email workflows (cancellations, reinstatements, endorsements, payments), maintain the CI/CD pipeline, and lead bug triage and resolution.",
     ],
-  }
-
+    stack: [
+      "Python",
+      "React",
+      "TypeScript",
+      "REST APIs",
+      "MongoDB",
+      "AWS",
+      "CI/CD",
+    ],
+  },
+  {
+    title: "Software Engineer",
+    company_name: "Gracious Home Care",
+    date: "August 2024 — July 2025",
+    points: [
+      "Built microservices to decouple the company's monolith into independently deployable services with Java Spring Boot and Python Django — improving maintainability, scalability, and deployment velocity.",
+      "Diagnosed and resolved bugs across the patient-management system, keeping caregiver and patient data flows reliable in a regulated healthcare environment.",
+      "Maintained and improved the CI/CD pipeline for reliable, repeatable deployments across web apps and newly decoupled services.",
+    ],
+    stack: ["Java", "Spring Boot", "Python", "Django", "REST APIs", "CI/CD"],
+  },
+  {
+    title: "Software Development Intern",
+    company_name: "Gridleaf",
+    date: "December 2021 — February 2022",
+    points: [
+      "Sole developer on a top-down 2D driving game promoting electric vehicles, built for Gridleaf's product marketing — designed and built all five levels end-to-end.",
+      "Wrote the core car mechanics from scratch (driving physics, controls) and simulated a realistic EV charging-station experience as a core gameplay mechanic.",
+      "Featured at SXSW and demoed live at Gridleaf's booth as part of the company's product showcase.",
+    ],
+    stack: ["C#", "Unity", "Game Design"],
+  },
 ];
 
-const testimonials = [
-  // {
-  //   testimonial:
-  //     "I thought it was impossible to make a website as beautiful as our product, but Rick proved me wrong.",
-  //   name: "Sara Lee",
-  //   designation: "CFO",
-  //   company: "Acme Co",
-  //   image: "https://randomuser.me/api/portraits/women/4.jpg",
-  // },
-  // {
-  //   testimonial:
-  //     "I've never met a web developer who truly cares about their clients' success like Rick does.",
-  //   name: "Chris Brown",
-  //   designation: "COO",
-  //   company: "DEF Corp",
-  //   image: "https://randomuser.me/api/portraits/men/5.jpg",
-  // },
-  // {
-  //   testimonial:
-  //     "After Rick optimized our website, our traffic increased by 50%. We can't thank them enough!",
-  //   name: "Lisa Wang",
-  //   designation: "CTO",
-  //   company: "456 Enterprises",
-  //   image: "https://randomuser.me/api/portraits/women/6.jpg",
-  // },
+export const education = [
+  {
+    school: "Stevens Institute of Technology",
+    degree: "M.S., Computer Science",
+    date: "Sep 2022 — Aug 2024",
+  },
+  {
+    school: "BMS Institute of Technology and Management",
+    degree: "B.E., Computer Science",
+    date: "2018 — 2022",
+  },
 ];
 
-const projects = [
+export const projects = [
   {
     name: "Bank Transaction API",
+    category: "Software Engineering",
     description:
-      "Backend API that allows users to credit and debit amount from their account along with an event logger to log all the failed and successful transactions.",
-    tags: [
-      {
-        name: "Java",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "Spring-Boot",
-        color: "green-text-gradient",
-      },
-      {
-        name: "Postgres",
-        color: "pink-text-gradient",
-      },
-      {
-        name: "RESTApi",
-        color: "orange-text-gradient",
-      },
-    ],
+      "Backend API to credit and debit account balances, with an event logger that records every failed and successful transaction.",
     image: api_proj,
-    source_code_link: "https://github.com/ShivangDholaria/Microtransaction-Project",
+    source_code_link:
+      "https://github.com/ShivangDholaria/Microtransaction-Project",
   },
   {
     name: "Graph Visualizer",
+    category: "Game Development",
     description:
-      "A Unity project that visualizes different mathematical functions and graphs them in 3D space.User has a choice to select from different functions",
-    tags: [
-      {
-        name: "Unity3D",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "C#",
-        color: "green-text-gradient",
-      },
-    ],
+      "A Unity project that graphs and visualizes different mathematical functions in 3D space, with a picker to switch between functions.",
     image: graph,
     source_code_link: "https://github.com/ShivangDholaria/Graph_V2",
   },
   {
-    name: "Technical Write Ups",
+    name: "Technical Write-Ups",
+    category: "Cybersecurity",
     description:
-      "Techinal report for all the machines and CTF challenges solved be me",
-    tags: [
-      {
-        name: "Problem Solving",
-        color: "blue-text-gradient",
-      },
-      {
-        name: "PenTesting",
-        color: "green-text-gradient",
-      },
-      {
-        name: "Reverse Engineering",
-        color: "pink-text-gradient",
-      },
-    ],
+      "Technical write-ups documenting the machines and CTF challenges I've solved.",
     image: writeup,
     source_code_link: "https://github.com/ShivangDholaria/Writeups",
   },
 ];
-
-export { experiences, projects, services, technologies, testimonials };
-
