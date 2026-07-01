@@ -18,4 +18,11 @@ module.exports = {
       { allowConstantExport: true },
     ],
   },
+  overrides: [
+    {
+      // Node-based config files use CommonJS (module.exports / require).
+      files: ['*.config.js'],
+      env: { node: true },
+    },
+  ],
 }
