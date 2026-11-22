@@ -1,14 +1,16 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import emailjs from "@emailjs/browser";
 
-import Reveal from "./Reveal";
+import { ArrowRight, ArrowUpRight } from "./Icons";
+import ResumeButton from "./ResumeButton";
 import { profile, socials } from "../constants";
-import { SocialIcon } from "./Icons";
 
 const initial = { name: "", email: "", message: "" };
 
+const fieldClass =
+  "min-h-12 w-full rounded-xl border border-line bg-bg px-3.5 text-[15px] text-fg placeholder:text-muted transition-colors focus:border-accent focus:outline-none";
+
 const Contact = () => {
-  const formRef = useRef();
   const [form, setForm] = useState(initial);
   const [status, setStatus] = useState({ state: "idle", msg: "" });
 
@@ -33,127 +35,61 @@ const Contact = () => {
       )
       .then(
         () => {
-          setStatus({
-            state: "success",
-            msg: "Thanks — I'll get back to you soon.",
-          });
+          setStatus({ state: "success", msg: "Message sent. I'll get back to you soon." });
           setForm(initial);
         },
         (err) => {
           console.error(err);
-          setStatus({
-            state: "error",
-            msg: "Something went wrong. Please email me directly.",
-          });
+          setStatus({ state: "error", msg: `The message didn't send. Please email me at ${profile.email}.` });
         }
       );
   };
 
   const loading = status.state === "loading";
-  const linkSocials = socials.filter((s) => s.url);
-  const field =
-    "rounded-lg border border-black/10 bg-white px-4 py-3 text-sm text-paper-ink outline-none transition-colors placeholder:text-paper-muted/70 focus:border-paper-accent";
 
   return (
-    <section id="contact" className="w-full bg-paper text-paper-ink">
-      <div className="mx-auto max-w-6xl px-6 pb-16 pt-24">
-        <div className="grid gap-12 lg:grid-cols-[1fr_minmax(0,440px)]">
-          <Reveal>
-            <div className="font-mono text-[13px] uppercase tracking-[0.14em] text-paper-accent">
-              06 / Contact
-            </div>
-            <h2 className="mt-5 text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl">
-              Building something
-              <br />
-              reliable? Let&apos;s talk.
-            </h2>
-
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a
-                href={`mailto:${profile.email}`}
-                className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white transition-transform hover:-translate-y-0.5"
-              >
-                {profile.email}
+    <section id="contact" className="mx-auto max-w-[1180px] px-5 py-12 sm:px-8 sm:py-20 lg:py-24">
+      <div className="grid gap-10 rounded-[28px] bg-surface p-7 sm:p-12 lg:grid-cols-[1.15fr_1fr] lg:gap-14">
+        <div className="flex flex-col items-start gap-5">
+          <p className="text-muted">Hiring for a backend role?</p>
+          <h2 className="mark text-[clamp(72px,11vw,120px)] leading-[0.95]">Let&apos;s talk.</h2>
+          <p className="max-w-[46ch] text-lg leading-relaxed text-soft">
+            I&apos;m looking for backend roles at mid-sized tech, fintech and healthtech companies. Email is the fastest way to reach me.
+          </p>
+          <a href={`mailto:${profile.email}`} className="btn btn-primary max-w-full break-all">
+            {profile.email} <ArrowRight />
+          </a>
+          <div className="flex flex-wrap gap-x-6 gap-y-1 text-[15px]">
+            {socials.map((s) => (
+              <a key={s.name} href={s.url} target="_blank" rel="noreferrer" className="link-draw inline-flex min-h-11 items-center gap-1 font-medium text-fg">
+                {s.name} <ArrowUpRight />
               </a>
-              {linkSocials
-                .filter((s) => s.icon !== "mail")
-                .map((s) => (
-                  <a
-                    key={s.name}
-                    href={s.url}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-black/15 px-6 py-3 text-sm font-medium text-paper-ink transition-colors hover:border-black/40"
-                  >
-                    <SocialIcon name={s.icon} width={16} height={16} />
-                    {s.name} ↗
-                  </a>
-                ))}
-            </div>
-
-            {profile.location && (
-              <p className="mt-6 text-sm text-paper-muted">
-                Based in {profile.location}.
-              </p>
-            )}
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <form
-              ref={formRef}
-              onSubmit={onSubmit}
-              className="flex flex-col gap-4 rounded-2xl border border-black/10 bg-white/60 p-6"
-            >
-              {["name", "email"].map((f) => (
-                <label key={f} className="flex flex-col gap-2">
-                  <span className="text-sm capitalize text-paper-muted">{f}</span>
-                  <input
-                    type={f === "email" ? "email" : "text"}
-                    name={f}
-                    required
-                    value={form[f]}
-                    onChange={onChange}
-                    placeholder={f === "email" ? "you@example.com" : "Your name"}
-                    className={field}
-                  />
-                </label>
-              ))}
-              <label className="flex flex-col gap-2">
-                <span className="text-sm text-paper-muted">Message</span>
-                <textarea
-                  name="message"
-                  rows={5}
-                  required
-                  value={form.message}
-                  onChange={onChange}
-                  placeholder="What's on your mind?"
-                  className={`resize-none ${field}`}
-                />
-              </label>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="mt-1 inline-flex w-fit items-center gap-2 rounded-full bg-accent px-6 py-2.5 text-sm font-medium text-white transition hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {loading ? "Sending…" : "Send message"}
-              </button>
-
-              {status.msg && (
-                <p
-                  className={`text-sm ${
-                    status.state === "success"
-                      ? "text-emerald-600"
-                      : "text-red-600"
-                  }`}
-                  role="status"
-                >
-                  {status.msg}
-                </p>
-              )}
-            </form>
-          </Reveal>
+            ))}
+            <ResumeButton className="link-draw inline-flex min-h-11 items-center gap-1 font-medium text-fg" />
+          </div>
         </div>
+
+        <form onSubmit={onSubmit} className="flex flex-col gap-4 rounded-[22px] bg-surface-2 p-6 sm:p-8">
+          <p className="display text-[28px] leading-tight">Or send a message</p>
+          <label htmlFor="cf-name" className="flex flex-col gap-2 text-sm text-muted">
+            Name
+            <input id="cf-name" type="text" name="name" required autoComplete="name" value={form.name} onChange={onChange} className={fieldClass} />
+          </label>
+          <label htmlFor="cf-email" className="flex flex-col gap-2 text-sm text-muted">
+            Email
+            <input id="cf-email" type="email" name="email" required autoComplete="email" value={form.email} onChange={onChange} className={fieldClass} />
+          </label>
+          <label htmlFor="cf-message" className="flex flex-col gap-2 text-sm text-muted">
+            Message
+            <textarea id="cf-message" name="message" rows={4} required value={form.message} onChange={onChange} className={`${fieldClass} resize-none py-3`} />
+          </label>
+          <button type="submit" disabled={loading} className="btn btn-outline w-full justify-center disabled:cursor-not-allowed disabled:opacity-60 sm:w-fit">
+            {loading ? "Sending…" : "Send message"}
+          </button>
+          <p role="status" aria-live="polite" className={`min-h-5 text-sm ${status.state === "error" ? "text-fg" : "text-ok"}`}>
+            {status.msg}
+          </p>
+        </form>
       </div>
     </section>
   );

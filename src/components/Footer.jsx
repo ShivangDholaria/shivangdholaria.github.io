@@ -1,37 +1,14 @@
-import { profile, socials } from "../constants";
-import { SocialIcon } from "./Icons";
+import { profile } from "../constants";
 
-const Footer = () => {
-  const linkSocials = socials.filter((s) => s.url);
-
-  return (
-    <footer className="w-full bg-paper text-paper-muted">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 border-t border-black/10 px-6 py-8 sm:flex-row">
-        <p className="text-sm">
-          © {new Date().getFullYear()} {profile.name}
-        </p>
-
-        <div className="flex gap-3">
-          {linkSocials.map((s) => (
-            <a
-              key={s.name}
-              href={s.url}
-              target="_blank"
-              rel="noreferrer"
-              aria-label={s.name}
-              className="transition-colors hover:text-paper-ink"
-            >
-              <SocialIcon name={s.icon} width={18} height={18} />
-            </a>
-          ))}
-        </div>
-
-        <span className="font-mono text-sm">
-          New York City Metropolitan Area
-        </span>
-      </div>
-    </footer>
-  );
-};
+const Footer = () => (
+  <footer className="border-t border-line">
+    <div className="mx-auto flex max-w-[1180px] flex-wrap justify-between gap-x-6 gap-y-3 px-5 py-8 sm:px-8 text-sm text-muted">
+      <span>
+        © {new Date().getFullYear()} {profile.name}
+      </span>
+      <span>{profile.location}</span>
+    </div>
+  </footer>
+);
 
 export default Footer;

@@ -1,169 +1,157 @@
-import {
-  api_proj,
-  aws,
-  csharp,
-  docker,
-  git,
-  graph,
-  java,
-  javascript,
-  mongodb,
-  python,
-  reactjs,
-  spring,
-  typescript,
-  unity,
-  writeup,
-} from "../assets";
+// All site copy lives here.
+
+export const base = import.meta.env.BASE_URL; // for files in /public, e.g. the photo below
 
 export const profile = {
   name: "Shivang Dholaria",
-  roles: ["Backend Engineer", "Full-Stack Developer"],
-  tagline:
-    "I build and modernize backend-heavy full-stack systems in insurance, healthcare, and fintech — where reliability and clean systems matter.",
-  location: "New York City Metropolitan Area",
+  role: "Backend engineer",
+  location: "New York",
   email: "dholariashivang@gmail.com",
   available: true,
-  resumeUrl: "/resume.pdf", // drop resume.pdf into /public
+  availability: "open to backend roles",
+  // The hero headline; the accent words are set in gold italics.
+  headline: "Modernizing the systems regulated businesses",
+  headlineAccent: "run on.",
+  tagline:
+    "Java, Spring Boot and Python for insurance and healthcare, shipped without breaking what already works. Right now: the policy platform agents and underwriters use every day at Surya Insurance.",
+  // Drop a square portrait into /public (e.g. me.jpg) and set: photo: `${base}me.jpg`.
+  // Until then the hero shows the intake pipeline in its place.
+  photo: null,
 };
 
 export const navLinks = [
-  { id: "about", title: "About" },
-  { id: "experience", title: "Experience" },
   { id: "work", title: "Work" },
+  { id: "experience", title: "Experience" },
+  { id: "about", title: "About" },
   { id: "contact", title: "Contact" },
 ];
 
 export const socials = [
-  { name: "GitHub", url: "https://github.com/ShivangDholaria", icon: "github" },
-  {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/in/shivangdholaria",
-    icon: "linkedin",
-  },
-  { name: "Email", url: "mailto:dholariashivang@gmail.com", icon: "mail" },
+  { name: "GitHub", url: "https://github.com/ShivangDholaria" },
+  { name: "LinkedIn", url: "https://www.linkedin.com/in/shivangdholaria" },
+];
+
+// What I'm building now (shown in the hero, or in the work section once a photo is set).
+export const pipeline = {
+  title: "Building now: AI intake pipeline",
+  status: "In progress",
+  steps: [
+    { label: "Policy application", note: "arrives as submitted", icon: "file" },
+    { label: "Parse", note: "AI extracts the fields", icon: "lines" },
+    { label: "Validate", note: "against underwriting guidelines", icon: "check", highlight: true },
+    { label: "Write", note: "clean record to the policy system", icon: "db" },
+  ],
+};
+
+export const metrics = [
+  { value: "$1M+", label: "saved by an automated reporting system", mark: true },
+  { value: "0", label: "disruptions during a solo platform migration" },
+  { value: "2", label: "regulated industries: insurance and healthcare" },
 ];
 
 export const about = {
-  paragraph:
-    "I build backend-heavy full-stack systems in industries where bugs become regulatory problems. At Surya Insurance I single-handedly migrated a legacy full-stack app to a modern stack and built a reporting system that saved the company $1M+ through automation — and I'm now shipping an AI pipeline that parses policy applications, validates them against underwriting guidelines, and writes clean data into the policy management system. Earlier, I rebuilt patient-management systems and set up CI/CD from scratch at a home-healthcare company. I like owning features end-to-end — from “this is a problem” to “this is in production” — and modernizing legacy systems without breaking what already works. MS in Computer Science, Stevens Institute of Technology.",
+  headline: "Reliable backends for businesses that can't afford downtime.",
+  paragraphs: [
+    "In insurance and healthcare, a bug isn't just a bug. It's a compliance problem. So I lean toward reliable, unglamorous backends: Java and Spring Boot, Python, REST APIs, and CI/CD that makes every release repeatable.",
+    "I like owning a feature from the first report of a problem to production: building the service and the React and TypeScript UI around it, shipping it through the pipeline, and leading triage when something comes back.",
+  ],
+  next: "Next: backend-focused roles at mid-sized tech, fintech and healthtech companies.",
+  principles: [
+    { title: "Don't break what works", body: "Migrate in steps that keep live operations running." },
+    { title: "Automate the repeat work", body: "Reports, policy emails, deploys. If it's done by hand every week, it should be a system." },
+    { title: "Own it to production", body: "Design it, build it, ship it, and stay on it through triage." },
+  ],
 };
 
-export const services = [
-  {
-    title: "Backend & APIs",
-    description:
-      "Java, Spring Boot, Python, and REST APIs backed by MongoDB — reliable services for regulated domains.",
-  },
-  {
-    title: "Full-Stack Delivery",
-    description:
-      "React and TypeScript front-ends when the work calls for it, owned end-to-end from problem to production.",
-  },
-  {
-    title: "Cloud & CI/CD",
-    description:
-      "AWS, CI/CD pipelines, and deployment automation — modernizing legacy systems without breaking what works.",
-  },
-];
-
-export const technologies = [
-  { name: "Java", icon: java },
-  { name: "Spring Boot", icon: spring },
-  { name: "Python", icon: python },
-  { name: "JavaScript", icon: javascript },
-  { name: "TypeScript", icon: typescript },
-  { name: "React", icon: reactjs },
-  { name: "MongoDB", icon: mongodb },
-  { name: "AWS", icon: aws },
-  { name: "Docker", icon: docker },
-  { name: "Git", icon: git },
-  { name: "C#", icon: csharp },
-  { name: "Unity", icon: unity },
+export const stack = [
+  { group: "Backend", items: ["Java", "Spring Boot", "Python", "Django", "REST APIs"] },
+  { group: "Data", items: ["MongoDB"] },
+  { group: "Cloud and delivery", items: ["AWS", "Docker", "CI/CD pipelines", "Git"] },
+  { group: "Frontend", items: ["React", "TypeScript", "JavaScript"] },
 ];
 
 export const experiences = [
   {
     title: "Software Engineer",
-    company_name: "Surya Insurance Company, RRG",
-    date: "August 2025 — Present",
+    company: "Surya Insurance",
+    date: "Aug 2025 – Present",
+    place: "New York",
+    summary:
+      "The policy management platform agents and underwriters use day to day for policies, payments and customer communications.",
     points: [
-      "Migrated the company's legacy full-stack application to a modern stack single-handedly — modernizing the front-end and underlying services without disrupting active policy operations.",
-      "Built the internal reporting system from the ground up, automating manual reports and routing the right data to C-suite stakeholders — saving the company $1M+.",
-      "Implementing an AI-powered intake pipeline that parses policy applications, validates them against underwriting guidelines, and writes clean records into the policy management system.",
-      "Automated transactional email workflows (cancellations, reinstatements, endorsements, payments), maintain the CI/CD pipeline, and lead bug triage and resolution.",
+      "Migrated the legacy full-stack application to a modern stack single-handedly, without disrupting active policy operations.",
+      "Built the internal reporting system from scratch, saving $1M+ by eliminating manual reporting.",
+      "Implementing an AI intake pipeline that parses applications, validates them against underwriting guidelines and writes clean records.",
+      "Automated email workflows for cancellations, reinstatements, endorsements and payments. I own CI/CD and lead bug triage.",
     ],
-    stack: [
-      "Python",
-      "React",
-      "TypeScript",
-      "REST APIs",
-      "MongoDB",
-      "AWS",
-      "CI/CD",
-    ],
+    stack: "Python · React · TypeScript · REST · MongoDB · AWS · CI/CD",
   },
   {
     title: "Software Engineer",
-    company_name: "Gracious Home Care",
-    date: "August 2024 — July 2025",
+    company: "Gracious Home Care",
+    date: "Aug 2024 – Jul 2025",
+    place: "Home healthcare",
+    summary: "Patient-management workflows, internal tooling and deployment infrastructure.",
     points: [
-      "Built microservices to decouple the company's monolith into independently deployable services with Java Spring Boot and Python Django — improving maintainability, scalability, and deployment velocity.",
-      "Diagnosed and resolved bugs across the patient-management system, keeping caregiver and patient data flows reliable in a regulated healthcare environment.",
-      "Maintained and improved the CI/CD pipeline for reliable, repeatable deployments across web apps and newly decoupled services.",
+      "Broke the monolith into independently deployable Spring Boot and Django services.",
+      "Kept caregiver and patient data flows reliable across the patient-management system.",
+      "Set up and maintained CI/CD for the web apps and the newly decoupled services.",
     ],
-    stack: ["Java", "Spring Boot", "Python", "Django", "REST APIs", "CI/CD"],
+    stack: "Java · Spring Boot · Python · Django · REST · CI/CD",
   },
   {
     title: "Software Development Intern",
-    company_name: "Gridleaf",
-    date: "December 2021 — February 2022",
-    points: [
-      "Sole developer on a top-down 2D driving game promoting electric vehicles, built for Gridleaf's product marketing — designed and built all five levels end-to-end.",
-      "Wrote the core car mechanics from scratch (driving physics, controls) and simulated a realistic EV charging-station experience as a core gameplay mechanic.",
-      "Featured at SXSW and demoed live at Gridleaf's booth as part of the company's product showcase.",
-    ],
-    stack: ["C#", "Unity", "Game Design"],
+    company: "Gridleaf",
+    date: "Dec 2021 – Feb 2022",
+    place: "Internship",
+    body: "Sole developer on a 2D driving game promoting electric vehicles: five levels, car physics written from scratch, and an EV charging mechanic. Demoed live at Gridleaf's booth at SXSW.",
+    stack: "C# · Unity · Game design",
   },
+];
+
+export const caseStudies = [
+  {
+    id: "reporting-system",
+    org: "Surya Insurance",
+    title: "Replacing hand-built executive reports with a system",
+    rows: [
+      { k: "Problem", v: "Reports for the C-suite were assembled by hand, and getting the right numbers to the right people took real time every cycle." },
+      { k: "Built", v: "An internal reporting system that generates the reports automatically and routes each one to the right executive." },
+    ],
+    outcome: { strong: "$1M+", rest: "saved by eliminating manual reporting" },
+    stack: "Python · MongoDB · AWS",
+  },
+  {
+    id: "legacy-migration",
+    org: "Surya Insurance",
+    title: "Migrating a live policy platform to a modern stack, solo",
+    rows: [
+      { k: "Scope", v: "The full-stack application: front end and services." },
+      { k: "Constraint", v: "Agents and underwriters kept working on it the whole time." },
+    ],
+    outcome: { strong: "0", rest: "disruptions to active policy operations" },
+    stack: "React · TypeScript · REST",
+  },
+  {
+    id: "monolith-split",
+    org: "Gracious Home Care",
+    title: "Breaking a healthcare monolith into services",
+    rows: [
+      { k: "Problem", v: "One codebase held every patient and caregiver workflow, so every change shipped everything." },
+      { k: "Built", v: "Independently deployable Spring Boot and Django services, each with its own CI/CD." },
+    ],
+    outcome: { strong: "Shipped", rest: "with patient data flows kept reliable throughout" },
+    stack: "Java · Spring Boot · Django",
+  },
+];
+
+export const sideProjects = [
+  { name: "Bank transaction API", url: "https://github.com/ShivangDholaria/Microtransaction-Project" },
+  { name: "Graph visualizer", url: "https://github.com/ShivangDholaria/Graph_V2" },
+  { name: "CTF write-ups", url: "https://github.com/ShivangDholaria/Writeups" },
 ];
 
 export const education = [
-  {
-    school: "Stevens Institute of Technology",
-    degree: "M.S., Computer Science",
-    date: "Sep 2022 — Aug 2024",
-  },
-  {
-    school: "BMS Institute of Technology and Management",
-    degree: "B.E., Computer Science",
-    date: "2018 — 2022",
-  },
-];
-
-export const projects = [
-  {
-    name: "Bank Transaction API",
-    category: "Software Engineering",
-    description:
-      "Backend API to credit and debit account balances, with an event logger that records every failed and successful transaction.",
-    image: api_proj,
-    source_code_link:
-      "https://github.com/ShivangDholaria/Microtransaction-Project",
-  },
-  {
-    name: "Graph Visualizer",
-    category: "Game Development",
-    description:
-      "A Unity project that graphs and visualizes different mathematical functions in 3D space, with a picker to switch between functions.",
-    image: graph,
-    source_code_link: "https://github.com/ShivangDholaria/Graph_V2",
-  },
-  {
-    name: "Technical Write-Ups",
-    category: "Cybersecurity",
-    description:
-      "Technical write-ups documenting the machines and CTF challenges I've solved.",
-    image: writeup,
-    source_code_link: "https://github.com/ShivangDholaria/Writeups",
-  },
+  { school: "Stevens Institute of Technology", degree: "M.S., Computer Science", date: "2022 – 2024" },
+  { school: "BMS Institute of Technology and Management", degree: "B.E., Computer Science", date: "2018 – 2022" },
 ];

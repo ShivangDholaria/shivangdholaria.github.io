@@ -1,124 +1,65 @@
-import { motion } from "framer-motion";
-
-import { profile } from "../constants";
-import { ArrowRight, ArrowUpRight } from "./Icons";
-
-// Headline stats — recruiter-facing proof points.
-// Move to src/constants if you'd rather edit them alongside your other data.
-const metrics = [
-  {
-    value: "$1M+",
-    label: "Saved via a reporting system\nI built from the ground up",
-  },
-  {
-    value: "Legacy → modern",
-    label: "Migrated a full-stack app solo,\nzero disruption to operations",
-  },
-  {
-    value: "3 domains",
-    label: "Insurance · healthcare · fintech\nregulated, high-stakes systems",
-  },
-];
-
-const rise = (delay) => ({
-  initial: { opacity: 0, y: 16 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
-});
+import Pipeline from "./Pipeline";
+import { ArrowRight } from "./Icons";
+import { metrics, profile } from "../constants";
 
 const Hero = () => (
-  <section id="top" className="relative overflow-hidden">
-    {/* ambient purple glow */}
-    <div
-      aria-hidden
-      className="pointer-events-none absolute -right-24 -top-40 h-[560px] w-[560px] rounded-full bg-accent/20 blur-[150px]"
-    />
-
-    <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-32 sm:pt-40">
-      {profile.available && (
-        <motion.a
+  <section
+    id="top"
+    className="mx-auto flex max-w-[1180px] flex-wrap items-start gap-12 px-5 pb-12 pt-10 sm:px-8 sm:pb-20 sm:pt-16 lg:flex-nowrap"
+  >
+    <div className="flex min-w-0 flex-[1_1_560px] flex-col items-start" data-enter>
+      {profile.available ? (
+        <a
           href="#contact"
-          {...rise(0)}
-          className="inline-flex items-center gap-2.5 rounded-full border border-white/14 bg-white/5 px-3.5 py-1.5 font-mono text-xs tracking-wider text-muted transition-colors hover:border-white/30"
+          className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-sm text-muted transition-colors hover:border-line-strong hover:text-fg"
         >
-          <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping-ring rounded-full bg-emerald-400/70" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400" />
-          </span>
-          OPEN TO OPPORTUNITIES
-        </motion.a>
+          <span className="h-[7px] w-[7px] rounded-full bg-accent" aria-hidden="true" />
+          {profile.role} · {profile.location} · {profile.availability}
+        </a>
+      ) : (
+        <p className="text-sm text-muted">
+          {profile.role} · {profile.location}
+        </p>
       )}
-
-      <motion.p
-        {...rise(0.08)}
-        className="mt-8 font-mono text-sm uppercase tracking-[0.12em] text-accent-2"
-      >
-        Backend-heavy full-stack engineer
-      </motion.p>
-
-      <motion.h1
-        {...rise(0.14)}
-        className="mt-3 text-[15vw] font-semibold leading-[0.95] tracking-tight sm:text-8xl"
-      >
-        Shivang
-        <br />
-        Dholaria
-      </motion.h1>
-
-      <motion.p
-        {...rise(0.22)}
-        className="mt-7 max-w-xl text-lg leading-relaxed text-faint sm:text-xl"
-      >
-        {profile.tagline}
-      </motion.p>
-
-      <motion.div
-        {...rise(0.3)}
-        className="mt-9 flex flex-wrap items-center gap-3.5"
-      >
-        <a
-          href="#work"
-          className="group inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-medium text-white shadow-cta transition-transform hover:-translate-y-0.5"
-        >
-          View work
-          <ArrowRight
-            width={16}
-            height={16}
-            className="transition-transform group-hover:translate-x-0.5"
-          />
+      <h1 className="display mt-7 text-[clamp(52px,8.4vw,100px)] leading-[0.98]">
+        {profile.headline} <em className="mark">{profile.headlineAccent}</em>
+      </h1>
+      <p className="mt-7 max-w-[52ch] text-lg leading-relaxed text-muted">{profile.tagline}</p>
+      <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+        <a href="#work" className="btn btn-primary justify-center">
+          View my work <ArrowRight />
         </a>
-        <a
-          href={profile.resumeUrl}
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-medium text-fg transition-colors hover:border-white/45"
-        >
-          Résumé
-          <ArrowUpRight width={16} height={16} />
+        <a href={`mailto:${profile.email}`} className="btn btn-secondary justify-center">
+          Email me
         </a>
-      </motion.div>
+      </div>
     </div>
 
-    {/* metrics */}
-    <div className="mx-auto max-w-6xl border-t border-white/10 px-6">
-      <div className="grid sm:grid-cols-3">
-        {metrics.map((m, i) => (
-          <motion.div
-            key={m.value}
-            {...rise(0.36 + i * 0.06)}
-            className={`py-10 sm:px-8 ${
-              i === 0 ? "sm:pl-0" : ""
-            } ${i < metrics.length - 1 ? "border-b border-white/10 sm:border-b-0 sm:border-r" : ""}`}
-          >
-            <div className="text-4xl font-semibold tracking-tight sm:text-5xl">
-              {m.value}
-            </div>
-            <div className="mt-3 whitespace-pre-line text-sm leading-relaxed text-muted">
-              {m.label}
-            </div>
-          </motion.div>
+    <div className="flex w-full flex-col gap-3 lg:w-[340px] lg:flex-none" data-enter>
+      {profile.photo ? (
+        <img
+          src={profile.photo}
+          alt={`Portrait of ${profile.name}`}
+          width="680"
+          height="680"
+          className="aspect-square w-full rounded-[22px] object-cover"
+        />
+      ) : (
+        <Pipeline />
+      )}
+      <dl className="m-0 grid grid-cols-2 gap-3">
+        {metrics.slice(0, 2).map((m) => (
+          <div key={m.label} className="rounded-[18px] bg-surface p-[18px]">
+            <dt className="sr-only">{m.label}</dt>
+            <dd className="m-0">
+              <span className={`display block text-[44px] leading-none tabular-nums ${m.mark ? "text-accent" : ""}`}>
+                {m.value}
+              </span>
+              <span className="mt-1.5 block text-[13px] leading-snug text-muted">{m.label}</span>
+            </dd>
+          </div>
         ))}
-      </div>
+      </dl>
     </div>
   </section>
 );

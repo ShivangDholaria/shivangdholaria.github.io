@@ -1,37 +1,18 @@
 import { useEffect, useState } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
 
 import { navLinks, profile } from "../constants";
 import { Menu, Close } from "./Icons";
+import Logo from "./Logo";
+import ResumeButton from "./ResumeButton";
 
 const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
 
-  // Spring-smoothed scroll progress for the top bar.
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, {
-    stiffness: 120,
-    damping: 30,
-    mass: 0.2,
-  });
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  // Highlight whichever section is currently in view.
+  // Highlight whichever section is in view.
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(e.target.id);
-        });
-      },
+      (entries) => entries.forEach((e) => e.isIntersecting && setActive(e.target.id)),
       { rootMargin: "-45% 0px -50% 0px" }
     );
     navLinks.forEach(({ id }) => {
@@ -41,90 +22,76 @@ const Navbar = () => {
     return () => observer.disconnect();
   }, []);
 
-  return (
-    <header
-      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-300 ${
-        scrolled
-          ? "border-b border-white/10 bg-ink/70 backdrop-blur-md"
-          : "border-b border-transparent"
-      }`}
-    >
-      <motion.div
-        style={{ scaleX: progress }}
-        className="absolute inset-x-0 top-0 h-0.5 origin-left bg-accent"
-      />
+  // Close the mobile menu with Escape.
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [open]);
 
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
-        <a
-          href="#top"
-          className="flex items-center gap-2.5 text-sm font-semibold tracking-tight transition-colors hover:text-white"
-        >
-          <span className="h-2.5 w-2.5 rounded-[3px] bg-accent" />
+  return (
+    <header className="sticky top-0 z-50 bg-bg/85 backdrop-blur-md">
+      <nav
+        aria-label="Primary"
+        className="mx-auto flex min-h-20 max-w-[1180px] items-center justify-between gap-6 px-5 sm:px-8"
+      >
+        <a href="#top" className="inline-flex items-center gap-3 font-serif text-[26px] leading-none text-fg">
+          <Logo size={38} className="flex-none text-accent" />
           {profile.name}
         </a>
 
-        <div className="hidden items-center gap-8 font-mono text-[13px] sm:flex">
+        <div className="hidden items-center gap-1.5 rounded-full bg-surface p-1.5 text-sm font-medium md:flex">
           {navLinks.map((l) => (
             <a
               key={l.id}
               href={`#${l.id}`}
-              className={`group relative transition-colors hover:text-fg ${
-                active === l.id ? "text-fg" : "text-muted"
+              aria-current={active === l.id ? "location" : undefined}
+              className={`inline-flex min-h-9 items-center rounded-full px-3.5 transition-colors ${
+                active === l.id ? "bg-surface-2 text-fg" : "text-muted hover:bg-surface-2 hover:text-fg"
               }`}
             >
-              0{navLinks.indexOf(l) + 1}_{l.title.toLowerCase()}
-              <span
-                className={`absolute -bottom-1.5 left-0 h-px bg-accent transition-all duration-300 ${
-                  active === l.id ? "w-full" : "w-0 group-hover:w-full"
-                }`}
-              />
+              {l.title}
             </a>
           ))}
-          <a
-            href={profile.resumeUrl}
-            target="_blank"
-            rel="noreferrer"
-            className="rounded-lg border border-white/15 px-4 py-1.5 text-fg transition-colors hover:border-white/40"
-          >
-            Résumé ↗
-          </a>
+          <ResumeButton
+            iconSize={15}
+            className="inline-flex min-h-9 items-center gap-1.5 rounded-full bg-accent px-3.5 text-accent-fg transition-colors hover:bg-accent-hover active:scale-[0.98]"
+          />
         </div>
 
         <button
-          className="text-fg sm:hidden"
+          type="button"
+          className="-mr-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-fg md:hidden"
           onClick={() => setOpen((v) => !v)}
-          aria-label="Toggle menu"
+          aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <Close /> : <Menu />}
         </button>
       </nav>
 
       {open && (
-        <div className="border-t border-white/10 bg-ink/95 px-6 py-4 font-mono text-sm backdrop-blur-md sm:hidden">
-          <div className="flex flex-col gap-4">
-            {navLinks.map((l) => (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={() => setOpen(false)}
-                className={`transition-colors hover:text-fg ${
-                  active === l.id ? "text-fg" : "text-muted"
-                }`}
-              >
-                0{navLinks.indexOf(l) + 1}_{l.title.toLowerCase()}
-              </a>
-            ))}
+        <div
+          id="mobile-menu"
+          className="fixed inset-x-0 bottom-0 top-20 z-50 flex flex-col gap-1 bg-bg px-5 py-6 md:hidden"
+        >
+          {navLinks.map((l) => (
             <a
-              href={profile.resumeUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="text-accent-2"
+              key={l.id}
+              href={`#${l.id}`}
               onClick={() => setOpen(false)}
+              className="display flex min-h-16 items-center border-b border-line text-5xl"
             >
-              Résumé ↗
+              {l.title}
             </a>
-          </div>
+          ))}
+          <ResumeButton
+            label="Download resume"
+            onDone={() => setOpen(false)}
+            className="btn btn-primary mt-6 w-full justify-center"
+          />
         </div>
       )}
     </header>

@@ -1,70 +1,38 @@
-import Reveal from "./Reveal";
+import Section from "./Section";
 import { experiences } from "../constants";
 
+// A timeline with gold dots; the current role gets a filled dot.
 const Experience = () => (
-  <section id="experience" className="w-full border-b border-white/10">
-    <div className="mx-auto max-w-6xl px-6 py-20">
-      <Reveal>
-        <div className="font-mono text-[13px] tracking-[0.12em] text-accent-2">
-          03 / EXPERIENCE
-        </div>
-        <h2 className="mt-4 text-3xl font-semibold tracking-tight sm:text-[34px]">
-          Where I&apos;ve shipped.
-        </h2>
-      </Reveal>
-
-      <div className="mt-11">
-        {experiences.map((e, i) => (
-          <Reveal key={`${e.company_name}-${i}`} delay={i * 0.05}>
-            <div
-              className={`grid gap-6 md:grid-cols-[220px_1fr] ${
-                i === 0 ? "" : "pt-9"
-              } ${
-                i === experiences.length - 1
-                  ? ""
-                  : "border-b border-white/10 pb-9"
-              }`}
-            >
-              <p className="order-2 font-mono text-[13px] leading-relaxed text-muted md:order-1">
-                {e.date}
-              </p>
-              <div className="order-1 md:order-2">
-                <div className="text-xl font-semibold tracking-tight">
-                  {e.title}
-                </div>
-                <div className="mt-0.5 text-[15px] text-accent-2">
-                  {e.company_name}
-                </div>
-                <ul className="mt-4 space-y-2">
-                  {e.points.map((p, j) => (
-                    <li
-                      key={j}
-                      className="flex gap-3 text-[15px] leading-relaxed text-faint"
-                    >
-                      <span className="mt-2.5 h-1 w-1 shrink-0 rounded-full bg-accent-2" />
-                      {p}
-                    </li>
-                  ))}
-                </ul>
-                {e.stack && (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {e.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="rounded-md border border-white/14 px-2.5 py-1 font-mono text-xs text-muted"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </Reveal>
-        ))}
-      </div>
-    </div>
-  </section>
+  <Section id="experience" title="Experience">
+    <ol className="m-0 ml-1.5 flex list-none flex-col border-l border-line p-0">
+      {experiences.map((e, i) => (
+        <li key={e.company} className="relative pb-12 pl-8 last:pb-1 sm:pl-10">
+          <span
+            aria-hidden="true"
+            className={`absolute -left-[7px] top-1.5 h-[13px] w-[13px] rounded-full border border-accent ${
+              i === 0 ? "bg-accent" : "bg-bg"
+            }`}
+          />
+          <p className={`text-sm ${i === 0 ? "text-accent" : "text-muted"}`}>
+            {e.date} · {e.place}
+          </p>
+          <h3 className="display mt-1 text-[clamp(28px,3vw,34px)] leading-[1.15]">
+            {e.title}, {e.company}
+          </h3>
+          {e.summary && <p className="mt-2 max-w-[72ch] text-[15px] leading-relaxed text-muted">{e.summary}</p>}
+          {e.points && (
+            <ul className="mt-4 flex max-w-[72ch] list-disc flex-col gap-2 pl-5 text-base leading-relaxed text-soft marker:text-accent">
+              {e.points.map((p) => (
+                <li key={p}>{p}</li>
+              ))}
+            </ul>
+          )}
+          {e.body && <p className="mt-4 max-w-[72ch] text-base leading-relaxed text-soft">{e.body}</p>}
+          <p className="mt-4 text-[13px] text-muted">{e.stack}</p>
+        </li>
+      ))}
+    </ol>
+  </Section>
 );
 
 export default Experience;

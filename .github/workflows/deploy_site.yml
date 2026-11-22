@@ -1,5 +1,12 @@
+name: Deploy site
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # allows a manual re-run from the Actions tab
+
 jobs:
-  # Single deploy job no building
   deploy:
     permissions:
       contents: read
@@ -7,27 +14,37 @@ jobs:
       id-token: write
     environment:
       name: github-pages
-      url: ${{steps.deployment.outputs.page_url}}
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22 # Vite 8 needs Node 20.19+ or 22.12+
+          cache: npm
+
       - name: Setup Pages
         uses: actions/configure-pages@v5
-      - name: Install NPM
-        run: npm install
-      - name: Build React App
+
+      - name: Install dependencies
+        run: npm ci # installs exactly what package-lock.json says
+
+      - name: Build
         run: npm run build
-      - name: Upload Artifact
+        env:
+          # Contact form (EmailJS). Add these under Settings → Secrets and variables → Actions.
+          VITE_APP_EMAILJS_SERVICE_ID: ${{ secrets.VITE_APP_EMAILJS_SERVICE_ID }}
+          VITE_APP_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_APP_EMAILJS_TEMPLATE_ID }}
+          VITE_APP_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_APP_EMAILJS_PUBLIC_KEY }}
+
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # upload entire directory
-          path: './dist'
+          path: ./dist
+
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4    
-
-on: # Add the 'on' property here
-  push: # Trigger the job on push events
-    branches:
-      - main
+        uses: actions/deploy-pages@v4

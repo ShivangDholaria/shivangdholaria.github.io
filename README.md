@@ -4,7 +4,7 @@ Personal site of Shivang Dholaria, a backend engineer in New York who modernizes
 
 **Live:** https://shivangdholaria.github.io
 
-The site is a single page: a hero with what I'm building now, selected case studies, experience, an about section with my stack and education, and a contact form. The resume is generated as a PDF in the browser from the same data, so the site and the resume never drift apart.
+The site is a single page with the overview: a hero with what I'm building now, selected case studies, experience, an about section with my stack and education, and a contact form. The detailed resume lives in its own file and is generated as a PDF in the browser when someone asks for it.
 
 ## Stack
 
@@ -36,6 +36,7 @@ npm run dev
 | `npm run build` | Builds the production site into `dist/` |
 | `npm run preview` | Serves the production build locally |
 | `npm run lint` | Runs ESLint (fails on any warning) |
+| `npm run resume` | Writes the resume to `resume-preview.pdf` so you can check it |
 
 ### Contact form
 
@@ -55,7 +56,7 @@ These are public by design: Vite puts them into the browser bundle, so never put
 
 ## Editing content
 
-Every word on the site lives in [`src/constants/index.js`](src/constants/index.js). Change it there and both the site and the resume update.
+Every word on the site lives in [`src/constants/index.js`](src/constants/index.js). The resume has its own file; see [The resume](#the-resume).
 
 | To change | Edit |
 |---|---|
@@ -73,15 +74,33 @@ Every word on the site lives in [`src/constants/index.js`](src/constants/index.j
 
 ## The resume
 
-Every resume button on the site builds a one-page US Letter PDF in the browser and downloads it as `Shivang_Dholaria_Resume.pdf`. Nothing is stored in the repository.
+The site is the overview; the resume holds the detail. They are kept in separate files on purpose, so a change to one never touches the other.
 
-- [`src/resume/ResumeDocument.jsx`](src/resume/ResumeDocument.jsx) is the layout: header, summary, experience, skills, projects, education. It uses built-in Helvetica, so the text stays selectable and readable by applicant tracking systems.
-- [`src/resume/download.js`](src/resume/download.js) builds the file and starts the download.
-- [`src/components/ResumeButton.jsx`](src/components/ResumeButton.jsx) is the button. It shows "Preparing…" while it works and "Try again" if something fails.
+**To update the resume, edit [`src/resume/resume.js`](src/resume/resume.js), then commit and push.** The next time anyone clicks a resume button, the PDF is built from that file and downloaded as `Shivang_Dholaria_Resume.pdf`. There is no PDF stored in the repository to keep in sync.
+
+The file has one section per part of the resume: header, summary, experience, projects, skills, education, certifications and awards. Comments at the top explain the rules:
+
+- An empty list `[]` hides that section.
+- An empty optional field `""` is left out (phone, project description, GPA, and so on).
+- If the content outgrows one page, the PDF continues onto a second. A job, project or short section never splits across the page break.
+
+**Check your edits before pushing:**
+
+```bash
+npm run resume
+```
+
+This writes `resume-preview.pdf` in the project folder (it is git-ignored). Open it to check the layout and the page count.
+
+How it is built:
+
+- [`src/resume/resume.js`](src/resume/resume.js): the resume content. This is the only file you need to edit.
+- [`src/resume/ResumeDocument.jsx`](src/resume/ResumeDocument.jsx): the layout, in US Letter with built-in Helvetica so the text stays selectable and readable by applicant tracking systems.
+- [`src/resume/download.js`](src/resume/download.js): builds the PDF in the browser and starts the download.
+- [`src/components/ResumeButton.jsx`](src/components/ResumeButton.jsx): the button. It shows "Preparing…" while it works and "Try again" if something fails.
+- [`scripts/resume-preview.mjs`](scripts/resume-preview.mjs): the `npm run resume` command.
 
 The PDF library is about 560 kB gzipped, so it is split into its own file. It starts loading when someone hovers over or focuses a resume button, and the rest of the site never waits for it.
-
-After changing the content, check that the resume still fits on one page: click a resume button in `npm run dev` and open the file.
 
 ## Project structure
 
@@ -106,12 +125,17 @@ src/
     ResumeButton.jsx     generates and downloads the resume
     Logo.jsx, Icons.jsx  inline SVG logo and icons
   resume/
+    resume.js            resume content (edit this to update the resume)
     ResumeDocument.jsx   resume PDF layout
     download.js          builds and downloads the PDF
+scripts/
+  resume-preview.mjs     npm run resume: writes resume-preview.pdf
 ```
 
 ## Deployment
 
-Every push to `main` runs [`.github/workflows/deploy_site.yml`](.github/workflows/deploy_site.yml), which installs dependencies, runs `npm run build` and publishes `dist/` to GitHub Pages.
+Every push to `main` runs [`.github/workflows/deploy_site.yml`](.github/workflows/deploy_site.yml). It sets up Node 22, installs exactly what `package-lock.json` lists (`npm ci`), runs `npm run build` and publishes `dist/` to GitHub Pages. You can also re-run it by hand from the Actions tab.
 
-The workflow does not yet pass the EmailJS values to the build, so the contact form on the live site needs them added: store the three values as repository secrets (Settings → Secrets and variables → Actions) and pass them as `env` on the "Build React App" step.
+The contact form on the live site needs the three EmailJS values as repository secrets: Settings → Secrets and variables → Actions → New repository secret, using the same names as in `.env.example`. The workflow passes them to the build.
+
+Commit `package-lock.json` whenever dependencies change. `npm ci` fails if it doesn't match `package.json`.
