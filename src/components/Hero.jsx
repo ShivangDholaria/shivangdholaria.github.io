@@ -1,4 +1,5 @@
 import Pipeline from "./Pipeline";
+import CountUp from "./CountUp";
 import { ArrowRight } from "./Icons";
 import { metrics, profile } from "../constants";
 
@@ -22,12 +23,12 @@ const Hero = () => (
         </p>
       )}
       <h1 className="display mt-7 text-[clamp(52px,8.4vw,100px)] leading-[0.98]">
-        {profile.headline} <em className="mark">{profile.headlineAccent}</em>
+        {profile.headline} <em className="mark draw-under">{profile.headlineAccent}</em>
       </h1>
       <p className="mt-7 max-w-[52ch] text-lg leading-relaxed text-muted">{profile.tagline}</p>
       <div className="mt-8 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
         <a href="#work" className="btn btn-primary justify-center">
-          View my work <ArrowRight />
+          View my work <ArrowRight className="btn-arrow" />
         </a>
         <a href={`mailto:${profile.email}`} className="btn btn-secondary justify-center">
           Email me
@@ -53,7 +54,8 @@ const Hero = () => (
             <dt className="sr-only">{m.label}</dt>
             <dd className="m-0">
               <span className={`display block text-[44px] leading-none tabular-nums ${m.mark ? "text-accent" : ""}`}>
-                {m.value}
+                <span className="sr-only">{m.value}</span>
+                <CountUp value={m.value} />
               </span>
               <span className="mt-1.5 block text-[13px] leading-snug text-muted">{m.label}</span>
             </dd>

@@ -15,7 +15,7 @@ export const profile = {
   tagline:
     "Java, Spring Boot and Python for insurance and healthcare, shipped without breaking what already works. Right now: the policy platform agents and underwriters use every day at Surya Insurance.",
   // Drop a square portrait into /public (e.g. me.jpg) and set: photo: `${base}me.jpg`.
-  // Until then the hero shows the intake pipeline in its place.
+  // Until then the hero shows what I'm building now (the `pipeline` below) in its place.
   photo: null,
 };
 
@@ -33,13 +33,13 @@ export const socials = [
 
 // What I'm building now (shown in the hero, or in the work section once a photo is set).
 export const pipeline = {
-  title: "Building now: AI intake pipeline",
+  title: "Building now: NLP query to report",
   status: "In progress",
   steps: [
-    { label: "Policy application", note: "arrives as submitted", icon: "file" },
-    { label: "Parse", note: "AI extracts the fields", icon: "lines" },
-    { label: "Validate", note: "against underwriting guidelines", icon: "check", highlight: true },
-    { label: "Write", note: "clean record to the policy system", icon: "db" },
+    { label: "Question", note: "asked in plain English", icon: "chat" },
+    { label: "Interpret", note: "NLP turns it into a query", icon: "lines", highlight: true },
+    { label: "Query", note: "runs against policy data", icon: "db" },
+    { label: "Report", note: "built and delivered", icon: "file" },
   ],
 };
 
@@ -81,7 +81,8 @@ export const experiences = [
     points: [
       "Migrated the legacy full-stack application to a modern stack single-handedly, without disrupting active policy operations.",
       "Built the internal reporting system from scratch, saving $1M+ by eliminating manual reporting.",
-      "Implementing an AI intake pipeline that parses applications, validates them against underwriting guidelines and writes clean records.",
+      "Built an AI intake pipeline that parses applications, validates them against underwriting guidelines and writes clean records.",
+      "Building a natural-language query-to-report feature: ask a question in plain English, get the report.",
       "Automated email workflows for cancellations, reinstatements, endorsements and payments. I own CI/CD and lead bug triage.",
     ],
     stack: "Python · React · TypeScript · REST · MongoDB · AWS · CI/CD",

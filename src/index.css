@@ -207,6 +207,118 @@
   }
 }
 
+/* ---------- Motion (only under html.motion; see main.jsx) ---------- */
+@layer components {
+  /* Sections and cards rise in as they scroll into view; --i staggers siblings. */
+  .motion [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1), transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: calc(var(--i, 0) * 90ms);
+  }
+  .motion [data-reveal].is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Logo: the gold dot blinks like a cursor on load, and hops on hover. */
+  .logo-dot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+  .motion .logo-dot {
+    animation: blink 1.6s steps(1, end) 0.5s 1;
+  }
+  .motion .brand:hover .logo-dot,
+  .motion .brand:focus-visible .logo-dot {
+    transform: translateY(-5px);
+  }
+
+  /* Hero: a gold line draws under the accent words. */
+  .draw-under {
+    position: relative;
+    display: inline-block;
+  }
+  .draw-under::after {
+    content: "";
+    position: absolute;
+    left: 0.02em;
+    right: 0.12em;
+    bottom: 0.04em;
+    height: max(2px, 0.025em);
+    background: var(--accent);
+    transform-origin: left;
+  }
+  .motion .draw-under::after {
+    animation: draw 0.7s cubic-bezier(0.65, 0, 0.35, 1) 1s both;
+  }
+
+  /* Buttons: the arrow nudges right on hover. */
+  .btn-arrow {
+    transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+  }
+  .motion .btn:hover .btn-arrow,
+  .motion .btn:focus-visible .btn-arrow {
+    transform: translateX(4px);
+  }
+
+  /* Menu: the highlight glides between links. */
+  .motion .nav-ind {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), width 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s;
+  }
+
+  /* Case-study cards: a soft gold light under the pointer (see useCardGlow in App.jsx). */
+  .motion .glow-card {
+    position: relative;
+    isolation: isolate;
+  }
+  .motion .glow-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(320px circle at var(--gx, 50%) var(--gy, 50%), rgb(216 189 134 / 0.14), transparent 65%);
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .motion .glow-card:hover::before {
+      opacity: 1;
+    }
+  }
+
+  /* Contact: one gold shine sweeps across "Let's talk." when it comes into view. */
+  .motion .shimmer {
+    background: linear-gradient(100deg, var(--accent) 40%, #fff4d6 50%, var(--accent) 60%) 0 0 / 250% 100% no-repeat;
+    background-position: 100% 0;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding-right: 0.12em;
+    margin-right: -0.12em;
+  }
+  .motion .shimmer.is-in {
+    animation: shine 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.45s both;
+  }
+}
+
+@keyframes blink {
+  0%, 25%, 50%, 75% { opacity: 1; }
+  12.5%, 37.5%, 62.5% { opacity: 0; }
+}
+
+@keyframes draw {
+  from { transform: scaleX(0); }
+}
+
+@keyframes shine {
+  from { background-position: 0 0; }
+  to { background-position: 100% 0; }
+}
+
 @keyframes enter {
   from {
     opacity: 0;

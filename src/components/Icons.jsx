@@ -75,7 +75,13 @@ const Db = (p) => (
   </svg>
 );
 
-const stepIcons = { file: File, lines: Lines, check: Check, db: Db };
+const Chat = (p) => (
+  <svg {...svg(16)} {...stroke} {...p}>
+    <path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z" />
+  </svg>
+);
+
+const stepIcons = { file: File, lines: Lines, check: Check, db: Db, chat: Chat };
 export const StepIcon = ({ name, ...p }) => {
   const C = stepIcons[name] || File;
   return <C {...p} />;

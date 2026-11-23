@@ -20,7 +20,7 @@ export const resume = {
   title: "Backend Engineer",
   location: "New York, NY",
   email: "dholariashivang@gmail.com",
-  phone: "", // optional, e.g. "(555) 123-4567"
+  phone: "(908) 922-5323", // optional, e.g. "(555) 123-4567"
   links: [
     { label: "github.com/ShivangDholaria", url: "https://github.com/ShivangDholaria" },
     { label: "linkedin.com/in/shivangdholaria", url: "https://www.linkedin.com/in/shivangdholaria" },
@@ -28,9 +28,8 @@ export const resume = {
   ],
 
   // ── Summary ───────────────────────────────────────────────────────────────
-  // One short paragraph. Leave "" to drop the section.
-  summary:
-    "Backend engineer modernizing regulated systems in insurance and healthcare. I build reliable services in Java, Spring Boot and Python, with REST APIs and CI/CD that makes every release repeatable, and I own features from the first report of a problem through production and triage.",
+  // One short paragraph. Leave "" to drop the section (currently hidden).
+  summary: "",
 
   // ── Experience ────────────────────────────────────────────────────────────
   // Most recent first. `stack` is optional.
@@ -77,26 +76,10 @@ export const resume = {
 
   // ── Projects ──────────────────────────────────────────────────────────────
   // `description` and `stack` are optional; add a line on what each one does.
-  projects: [
-    {
-      name: "Bank Transaction API",
-      url: "https://github.com/ShivangDholaria/Microtransaction-Project",
-      description: "",
-      stack: "",
-    },
-    {
-      name: "Graph Visualizer",
-      url: "https://github.com/ShivangDholaria/Graph_V2",
-      description: "",
-      stack: "",
-    },
-    {
-      name: "CTF Write-ups",
-      url: "https://github.com/ShivangDholaria/Writeups",
-      description: "",
-      stack: "",
-    },
-  ],
+  // Currently hidden. To show a Projects section, add entries like:
+  //   { name: "Bank Transaction API", url: "https://github.com/ShivangDholaria/Microtransaction-Project",
+  //     description: "What it does and what you used.", stack: "Java, Spring Boot" },
+  projects: [],
 
   // ── Skills ────────────────────────────────────────────────────────────────
   skills: [

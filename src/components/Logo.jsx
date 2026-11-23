@@ -7,7 +7,7 @@ const Logo = ({ size = 36, className = "" }) => (
   <svg width={size} height={size} viewBox="0 0 64 64" className={className} aria-hidden="true">
     <rect width="64" height="64" rx="16" fill="var(--surface)" />
     <path d={LETTERS} fill="var(--fg)" stroke="var(--fg)" strokeWidth="0.5" strokeLinejoin="round" />
-    <path d={DOT} fill="var(--accent)" />
+    <path d={DOT} fill="var(--accent)" className="logo-dot" />
   </svg>
 );
 

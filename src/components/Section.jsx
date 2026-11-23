@@ -4,7 +4,7 @@ export const Eyebrow = ({ children }) => (
 
 // Serif section title; `accent` is set in gold italics after the title.
 export const SectionTitle = ({ title, accent, note }) => (
-  <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
+  <div data-reveal className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-3">
     <h2 className="display text-[clamp(40px,5.4vw,60px)] leading-[1.02]">
       {title}
       {accent && (

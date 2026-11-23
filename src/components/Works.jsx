@@ -30,7 +30,7 @@ const Meta = ({ c }) => (
 );
 
 const Lead = ({ c }) => (
-  <article className="card card-lift grid gap-10 p-7 sm:p-9 lg:grid-cols-[1.5fr_1fr] lg:items-end">
+  <article className="card card-lift glow-card grid gap-10 p-7 sm:p-9 lg:grid-cols-[1.5fr_1fr] lg:items-end">
     <div className="flex flex-col gap-4">
       <Meta c={c} />
       <h3 className="display text-[clamp(30px,3.4vw,40px)] leading-[1.08]">{c.title}</h3>
@@ -41,7 +41,7 @@ const Lead = ({ c }) => (
 );
 
 const Card = ({ c }) => (
-  <article className="card card-lift flex h-full flex-col gap-4 p-7 sm:p-8">
+  <article className="card card-lift glow-card flex h-full flex-col gap-4 p-7 sm:p-8">
     <Meta c={c} />
     <h3 className="display text-[32px] leading-[1.1]">{c.title}</h3>
     <Rows rows={c.rows} />
@@ -55,18 +55,26 @@ const Works = () => {
   const [lead, ...rest] = caseStudies;
   return (
     <Section id="work" title="Selected" accent="work" note="Insurance and healthcare">
-      <Lead c={lead} />
+      <div data-reveal>
+        <Lead c={lead} />
+      </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
-        {rest.map((c) => (
-          <Card key={c.id} c={c} />
+        {rest.map((c, i) => (
+          <div key={c.id} data-reveal style={{ "--i": i }}>
+            <Card c={c} />
+          </div>
         ))}
       </div>
 
       {/* With a portrait in the hero, the pipeline moves down here. */}
-      {profile.photo && <Pipeline className="max-w-[560px]" />}
+      {profile.photo && (
+        <div data-reveal>
+          <Pipeline className="max-w-[560px]" />
+        </div>
+      )}
 
-      <div className="flex flex-wrap items-baseline gap-x-8 gap-y-3 border-y border-line py-5 text-[15px]">
+      <div data-reveal className="flex flex-wrap items-baseline gap-x-8 gap-y-3 border-y border-line py-5 text-[15px]">
         <span className="text-muted">Also built</span>
         {sideProjects.map((p) => (
           <a
